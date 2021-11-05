@@ -1,0 +1,6 @@
+[user]
+	name = Marc Schnitzius
+	email = marc.schnitzius@codecentric.de
+[core]
+	excludesFile = /Users/ms/.gitignore
+	autocrlf = input
