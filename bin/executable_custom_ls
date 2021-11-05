@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec ls \
+    -lahtr \
+    --color=always \
+    --time-style=$'+ %F\n%m-%d %H:%M' \
+    -q \
+    "$@" | colored_ls

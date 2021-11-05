@@ -144,8 +144,8 @@ export LC_CTYPE="en_US.UTF-8"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias l='gls -lahtr --quoting-style=shell --color=auto --time-style="+ %F  %H:%M:%S │ "'
-alias ll='gls -lahtr --quoting-style=shell --color=auto --time-style="+ %F  %H:%M:%S │ " | less'
+alias l='custom_ls'
+alias ll='custom_ls | less'
 
 alias tf='terraform'
 
@@ -158,6 +158,7 @@ export PATH="/usr/local/opt/python@3.9/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib/node_modules:$PATH"
 export PATH="/usr/local/lib/node_modules/npm/node_modules:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
