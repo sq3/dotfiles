@@ -144,8 +144,10 @@ export LC_CTYPE="en_US.UTF-8"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias l='custom_ls'
-alias ll='custom_ls | less'
+alias l='exa --icons -las=changed --time-style=long-iso'
+alias ls='exa --icons -as=changed'
+alias lt='exa --icons -Tas=changed'
+alias ll='exa --icons -las=changed --time-style=long-iso | less'
 
 alias tf='terraform'
 
