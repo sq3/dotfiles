@@ -1,0 +1,257 @@
+# AeroSpace config
+# https://nikitabobko.github.io/AeroSpace/guide
+
+config-version = 2
+
+start-at-login = true
+
+# JankyBorders is started with AeroSpace (brew service disabled)
+after-startup-command = [
+  'exec-and-forget /opt/homebrew/bin/borders active_color=0xff89b4fa inactive_color=0x00000000 width=5.0 hidpi=on',
+]
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+# wide monitors split side by side
+default-root-container-orientation = 'auto'
+
+automatically-unhide-macos-hidden-apps = true
+
+
+# Floating windows (popups, 1Password, Calendar, ...) follow the mouse monitor when they get focus
+on-focus-changed = ['exec-and-forget ~/.config/aerospace/scripts/pull-floating.sh']
+
+# Workspaces always exist and are pinned to monitors (first match wins, rest are fallbacks)
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+[workspace-to-monitor-force-assignment]
+1 = ['1', 'main']
+2 = ['1', 'main']
+3 = ['2', 'main']
+4 = ['2', 'main']
+5 = ['2', 'main']
+6 = ['2', 'main']
+7 = ['2', 'main']
+8 = ['built-in', 'main']
+9 = ['built-in', 'main']
+
+[key-mapping]
+preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 8
+outer.right = 8
+
+[mode.main.binding]
+# Focus
+ctrl-alt-h = ['focus left', 'move-mouse window-lazy-center']
+ctrl-alt-j = ['focus down', 'move-mouse window-lazy-center']
+ctrl-alt-k = ['focus up', 'move-mouse window-lazy-center']
+ctrl-alt-l = ['focus right', 'move-mouse window-lazy-center']
+ctrl-alt-left = ['focus left', 'move-mouse window-lazy-center']
+ctrl-alt-down = ['focus down', 'move-mouse window-lazy-center']
+ctrl-alt-up = ['focus up', 'move-mouse window-lazy-center']
+ctrl-alt-right = ['focus right', 'move-mouse window-lazy-center']
+
+# Move
+ctrl-alt-shift-h = 'move left'
+ctrl-alt-shift-j = 'move down'
+ctrl-alt-shift-k = 'move up'
+ctrl-alt-shift-l = 'move right'
+ctrl-alt-shift-left = 'move left'
+ctrl-alt-shift-down = 'move down'
+ctrl-alt-shift-up = 'move up'
+ctrl-alt-shift-right = 'move right'
+
+# Resize
+ctrl-alt-minus = 'resize smart -50'
+ctrl-alt-equal = 'resize smart +50'
+
+# Layout
+ctrl-alt-t = 'layout tiles horizontal vertical'
+ctrl-alt-a = 'layout accordion horizontal vertical'
+ctrl-alt-f = 'fullscreen'
+ctrl-alt-shift-f = 'layout floating tiling'
+ctrl-alt-m = 'exec-and-forget ~/.config/aerospace/scripts/layout.sh stack'
+ctrl-alt-g = 'exec-and-forget ~/.config/aerospace/scripts/layout.sh grid'
+ctrl-alt-shift-p = 'exec-and-forget ~/.config/aerospace/scripts/pull-floating.sh'
+
+# Workspaces
+ctrl-alt-1 = ['workspace 1', 'move-mouse monitor-lazy-center']
+ctrl-alt-2 = ['workspace 2', 'move-mouse monitor-lazy-center']
+ctrl-alt-3 = ['workspace 3', 'move-mouse monitor-lazy-center']
+ctrl-alt-4 = ['workspace 4', 'move-mouse monitor-lazy-center']
+ctrl-alt-5 = ['workspace 5', 'move-mouse monitor-lazy-center']
+ctrl-alt-6 = ['workspace 6', 'move-mouse monitor-lazy-center']
+ctrl-alt-7 = ['workspace 7', 'move-mouse monitor-lazy-center']
+ctrl-alt-8 = ['workspace 8', 'move-mouse monitor-lazy-center']
+ctrl-alt-9 = ['workspace 9', 'move-mouse monitor-lazy-center']
+ctrl-alt-tab = ['workspace-back-and-forth', 'move-mouse monitor-lazy-center']
+ctrl-alt-n = ['workspace next', 'move-mouse monitor-lazy-center']
+ctrl-alt-p = ['workspace prev', 'move-mouse monitor-lazy-center']
+
+# Move window to workspace (focus stays)
+ctrl-alt-shift-1 = 'move-node-to-workspace 1'
+ctrl-alt-shift-2 = 'move-node-to-workspace 2'
+ctrl-alt-shift-3 = 'move-node-to-workspace 3'
+ctrl-alt-shift-4 = 'move-node-to-workspace 4'
+ctrl-alt-shift-5 = 'move-node-to-workspace 5'
+ctrl-alt-shift-6 = 'move-node-to-workspace 6'
+ctrl-alt-shift-7 = 'move-node-to-workspace 7'
+ctrl-alt-shift-8 = 'move-node-to-workspace 8'
+ctrl-alt-shift-9 = 'move-node-to-workspace 9'
+
+# Monitors
+ctrl-alt-period = ['focus-monitor --wrap-around next', 'move-mouse monitor-lazy-center']
+ctrl-alt-comma = ['focus-monitor --wrap-around prev', 'move-mouse monitor-lazy-center']
+ctrl-alt-shift-period = ['move-node-to-monitor --wrap-around next', 'focus-monitor --wrap-around next', 'move-mouse monitor-lazy-center']
+ctrl-alt-shift-comma = ['move-node-to-monitor --wrap-around prev', 'focus-monitor --wrap-around prev', 'move-mouse monitor-lazy-center']
+
+ctrl-alt-shift-r = 'reload-config'
+ctrl-alt-s = 'mode service'
+
+[mode.service.binding]
+esc = 'mode main'
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+b = ['balance-sizes', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+h = ['join-with left', 'mode main']
+j = ['join-with down', 'mode main']
+k = ['join-with up', 'mode main']
+l = ['join-with right', 'mode main']
+
+# =============================================================================
+# APP RULES
+# =============================================================================
+
+# Runs for every new window; brings it to front if a later rule made it floating
+[[on-window-detected]]
+check-further-callbacks = true
+run = 'exec-and-forget ~/.config/aerospace/scripts/raise-new-floating.sh'
+
+# Brave profiles: work -> 1, private -> 2
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+if.window-title-regex-substring = '– codecentric'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+if.window-title-regex-substring = '– private'
+run = 'move-node-to-workspace 2'
+
+# Dev
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.stablyai.orca'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.DanPristupov.Fork'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.t3tools.t3code'
+run = 'move-node-to-workspace 3'
+
+# Claude, Mail, Slack
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 9'
+
+# Floating quick-access apps
+[[on-window-detected]]
+if.app-id = 'com.culturedcode.ThingsMac'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'im.riot.app'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.agilebits.onepassword7'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.wiheads.paste'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.haystacksoftware.Arq'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.logi.cp-dev-mgr'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'io.tailscale.ipn.macsys'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'at.obdev.littlesnitch.agent'
+run = 'layout floating'
+
+# Native macOS tabs show up as separate windows; floating keeps hidden tabs from taking tiles
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = 'layout floating'
