@@ -8,6 +8,7 @@ macOS setup managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin) 
 | --- | --- |
 | `flake.nix` | Inputs (nixpkgs, nix-darwin, home-manager, skill repos) and the `mbp` host |
 | `darwin.nix` | macOS system settings (Dock, Finder, keyboard, trackpad, …), Nix settings, Homebrew |
+| `menubar.nix` | Control Center menu bar items and Bartender layout/style (allowlisted keys only) |
 | `home.nix` | Symlinks `home/` into `$HOME`; clones oh-my-zsh, powerlevel10k, zsh-autosuggestions, tpm on first run |
 | `skills.nix` | Agent skills linked into `~/.agents/skills` and `~/.claude/skills` |
 | `Brewfile` | Taps, formulae and casks |

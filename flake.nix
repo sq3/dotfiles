@@ -25,6 +25,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./darwin.nix
+        ./menubar.nix
         home-manager.darwinModules.home-manager
         {
           home-manager = {
