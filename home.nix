@@ -42,6 +42,9 @@ in
   home.homeDirectory = "/Users/ms";
   home.stateVersion = "25.11";
 
+  # CLI tools no longer available in Homebrew
+  home.packages = [ pkgs.tflint ];
+
   home.file = lib.genAttrs homeFiles link;
   xdg.configFile = lib.genAttrs configFiles (p: link ".config/${p}");
 
