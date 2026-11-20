@@ -1,0 +1,9 @@
+# Fake example values from upstream oh-my-zsh plugins, committed in 2021; not real secrets
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/dotenv/README.md:generic-api-key:20
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/dotenv/README.md:generic-api-key:21
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/dotenv/README.md:generic-api-key:29
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/dotenv/README.md:generic-api-key:30
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/genpass/executable_genpass-apple:generic-api-key:8
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/genpass/executable_genpass-monkey:generic-api-key:8
+152d28de3aa57e098767342c639ef35c070aaaa9:dot_oh-my-zsh/plugins/osx/spotify:generic-api-key:54
+fd60e5fb7d54605c8db9d7c1b42ba601997744d5:dot_oh-my-zsh/plugins/macos/spotify:generic-api-key:54

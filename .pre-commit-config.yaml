@@ -1,0 +1,22 @@
+# This repo is public: every commit and push is scanned for secrets.
+# Installed automatically by home.nix on darwin-rebuild switch.
+default_install_hook_types: [pre-commit, pre-push]
+
+repos:
+  - repo: local
+    hooks:
+      # gitleaks comes from the Brewfile
+      - id: gitleaks
+        name: gitleaks (staged changes)
+        entry: gitleaks git --pre-commit --staged --redact --verbose
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+      # Catches commits made with --no-verify before they leave the machine
+      - id: gitleaks-push
+        name: gitleaks (commits being pushed)
+        entry: bash -c 'gitleaks git --redact --verbose --log-opts="${PRE_COMMIT_FROM_REF}..${PRE_COMMIT_TO_REF}"'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

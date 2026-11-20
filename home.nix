@@ -55,4 +55,11 @@ in
       fi
     '') clones)
   );
+
+  # The repo is public: keep the gitleaks hooks from .pre-commit-config.yaml installed
+  home.activation.installDotfilesHooks = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ -d "$HOME/dotfiles/.git" ] && [ -x /opt/homebrew/bin/pre-commit ]; then
+      (cd "$HOME/dotfiles" && run /opt/homebrew/bin/pre-commit install)
+    fi
+  '';
 }
