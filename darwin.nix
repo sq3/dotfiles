@@ -51,6 +51,23 @@
       wvous-tr-corner = 1;
       wvous-bl-corner = 1;
       wvous-br-corner = 14; # Quick Note
+      showAppExposeGestureEnabled = true;
+      persistent-apps = [
+        "/Applications/Brave Browser.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Calendar.app"
+        "/Applications/Things3.app"
+        "/Applications/Obsidian.app"
+        "/Applications/Claude.app"
+        "/Applications/WezTerm.app"
+        "/Applications/T3 Code (Beta).app"
+        "/Applications/Visual Studio Code.app"
+        "/Applications/Fork.app"
+        "/Applications/Slack.app"
+        "/Applications/1Password.app"
+        "/Applications/Spotify.app"
+      ];
+      persistent-others = [ "/Users/ms/Downloads" ];
     };
 
     finder = {
@@ -58,6 +75,12 @@
       FXPreferredViewStyle = "Nlsv"; # list view
       ShowPathbar = true;
       ShowStatusBar = true;
+      NewWindowTarget = "Recents";
+      FXRemoveOldTrashItems = true; # empty trash after 30 days
+      ShowExternalHardDrivesOnDesktop = true;
+      ShowHardDrivesOnDesktop = false;
+      ShowMountedServersOnDesktop = false;
+      ShowRemovableMediaOnDesktop = true;
     };
 
     NSGlobalDomain = {
@@ -71,22 +94,62 @@
       AppleMetricUnits = 1;
       AppleTemperatureUnit = "Celsius";
       _HIHideMenuBar = false;
+      AppleShowScrollBars = "WhenScrolling";
+      AppleWindowTabbingMode = "always";
+      AppleEnableSwipeNavigateWithScrolls = true;
+      NSAutomaticWindowAnimationsEnabled = false;
+      NSWindowResizeTime = 0.001;
+      "com.apple.springing.enabled" = true;
+      "com.apple.springing.delay" = 0.5;
+      "com.apple.trackpad.forceClick" = true;
+      "com.apple.trackpad.scaling" = 2.0;
     };
+
+    ".GlobalPreferences"."com.apple.mouse.scaling" = 3.0;
 
     trackpad = {
       Clicking = false;
+      Dragging = false;
       TrackpadThreeFingerDrag = false;
+      TrackpadThreeFingerTapGesture = 0;
       TrackpadRightClick = true;
+      FirstClickThreshold = 2; # firm click
+      SecondClickThreshold = 2;
+      ActuateDetents = true;
+      TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
     };
 
-    screencapture.location = "~/OpenCloud/Personal/Screenshots";
+    screencapture = {
+      location = "~/OpenCloud/Personal/Screenshots";
+      target = "file";
+    };
     spaces.spans-displays = true;
-    menuExtraClock.ShowSeconds = true;
+
+    menuExtraClock = {
+      Show24Hour = true;
+      ShowSeconds = true;
+      ShowDate = 2; # never
+      ShowDayOfWeek = false;
+      ShowDayOfMonth = false;
+      IsAnalog = false;
+    };
 
     WindowManager = {
       GloballyEnabled = false; # Stage Manager off
       EnableStandardClickToShowDesktop = true;
       EnableTiledWindowMargins = false;
+      # macOS edge tiling off; AeroSpace does the tiling
+      EnableTilingByEdgeDrag = false;
+      EnableTopTilingByEdgeDrag = false;
+      HideDesktop = true;
+      AppWindowGroupingBehavior = true;
+      AutoHide = false;
+      StandardHideWidgets = false;
+      StageManagerHideWidgets = false;
     };
+
+    hitoolbox.AppleFnUsageType = "Do Nothing";
+    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+    loginwindow.GuestEnabled = false;
   };
 }
