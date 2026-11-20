@@ -1,29 +1,43 @@
 # My Dotfiles
 
-Managed with [chezmoi](https://www.chezmoi.io/). Third-party code (oh-my-zsh, powerlevel10k, tpm) is fetched via `.chezmoiexternal.toml`, not vendored.
+macOS setup managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager). Apps still come from Homebrew, driven by the `Brewfile` through nix-darwin.
 
-## Setup
+## Layout
+
+| Path | What it does |
+| --- | --- |
+| `flake.nix` | Inputs (nixpkgs, nix-darwin, home-manager, skill repos) and the `mbp` host |
+| `darwin.nix` | macOS system settings (Dock, Finder, keyboard, trackpad, …), Nix settings, Homebrew |
+| `home.nix` | Symlinks `home/` into `$HOME`; clones oh-my-zsh, powerlevel10k, zsh-autosuggestions, tpm on first run |
+| `skills.nix` | Agent skills linked into `~/.agents/skills` and `~/.claude/skills` |
+| `Brewfile` | Taps, formulae and casks |
+| `home/` | The actual config files, laid out like `$HOME` |
+
+Configs in `home/` are linked out of the Nix store, so editing them in `~/dotfiles` takes effect immediately without a rebuild.
+
+## Fresh machine
 
 ```sh
-brew install chezmoi
-chezmoi init sq3
-chezmoi diff        # review
-chezmoi apply
-brew bundle --file="$(chezmoi source-path)/Brewfile"
+# 1. Install Nix (https://nixos.org/download) and Homebrew (https://brew.sh)
+# 2. Clone into ~/dotfiles (home.nix expects this path)
+git clone https://github.com/sq3/dotfiles ~/dotfiles
+# 3. nix-darwin refuses to overwrite files the Nix installer created
+sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
+sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
+sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
+# 4. First activation
+sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake ~/dotfiles#mbp
 ```
 
-## What's inside
+Existing files in `$HOME` that home-manager would replace are renamed to `*.before-hm`.
 
-| Area | Files |
-| --- | --- |
-| Shell | `~/.zshrc`, `~/.p10k.zsh` (oh-my-zsh + powerlevel10k) |
-| Git | `~/.gitconfig` (SSH signing via 1Password), `~/.gitignore`, `~/.config/git/ignore`, `~/.config/gh/config.yml` |
-| Window manager | `~/.config/aerospace` (AeroSpace + helper scripts) |
-| Terminal | `~/.config/wezterm/wezterm.lua`, `~/.tmux.conf` |
-| Editors | `~/.config/nvim` (LazyVim), `~/.vimrc` |
-| AI tooling | `~/.claude/statusline-command.sh`, `~/.claude/output-styles`, `~/.config/opencode`, `~/.config/herdr` |
-| Agent skills | `.chezmoidata/skills.yaml`, installed globally with `npx skills` on apply |
-| Packages | `Brewfile` |
+## Day to day
+
+```sh
+sudo darwin-rebuild switch --flake ~/dotfiles#mbp   # apply changes
+nix flake update                                    # update nixpkgs, modules and skills
+brew bundle dump --file=~/dotfiles/Brewfile --force # after installing apps by hand
+```
 
 Secrets are never committed; they come from 1Password (`op`) at runtime.
 
