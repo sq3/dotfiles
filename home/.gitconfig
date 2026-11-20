@@ -1,0 +1,15 @@
+[user]
+	name = Marc Schnitzius
+	email = marc.schnitzius@codecentric.de
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEG8hbc08VBIUqu1LYx76Kn90sCFfou+hMqwrYGF9lZ+/sxqsDSqkbU+colAwgJuAul//nlofmxp6VaB01t7SEuGlraIk54ygTboTpH0VCgtgCfwY0yfEEc9+D7pL8uvOETTmuUedNcaamlmsucQrSUdEZKYLupw/O+a/d6jsB26mIgFtommswsZPUfchusw+k6P+YBQ9YOcecj2M2hDuAE5zMMpIYzLWRlmwQuFPDQeS6WO4I24y3tfb8v2iifeg2FAFa0rMiImjQ1kN3px1VkYlTJ2vrnj05hz5hhC56qVqd9Zc6i2Htfie5ge/d/tkiNG4YVxY3APllEm0rhzTFW2H7loS5PPnaWl0cjtL43Vo2OQZ2vt05P3FOYjQzUB9P6QIESYi5MHVnlEf5FWxqLPLTGeiQIkBLjrwA+KRcwGJD2g/gJwiP17aWLoMc7SnnOPL6Bun8keapU/fxJIVAFp+1WBxdjL2SyQ7lKHggCVI6sztDj1goRsF2fnn0mLUab1XyRKv8IOTluBkKzHDH3I85cpF/1eB0NL8tejmKs7wNf0jhwipI3YJu7wxO89jAJkfy+D/oyYfS38lUKI/McMAQIyig32liPdC/sqw/01M4I/9L36CzIYhfOn+jO+/4eNsb9C+NZ65JnFCVTQik3oYsy0S3xSZ1FqZFN3TB0Q==
+[core]
+	excludesFile = ~/.gitignore
+	autocrlf = input
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
