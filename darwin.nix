@@ -20,6 +20,12 @@
   };
   ids.gids.nixbld = 350;
 
+  # Touch ID for sudo; reattach makes it work inside tmux too
+  security.pam.services.sudo_local = {
+    touchIdAuth = true;
+    reattach = true;
+  };
+
   # oh-my-zsh runs compinit itself
   programs.zsh = {
     enable = true;
