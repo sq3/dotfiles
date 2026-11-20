@@ -7,9 +7,7 @@ tap "humanitec/tap"
 tap "kcl-lang/tap"
 tap "kubara-io/tap"
 tap "nikitabobko/tap"
-tap "platformsh/tap"
 tap "score-spec/tap"
-tap "stablyai/orca"
 tap "theboredteam/boring-notch", "https://github.com/TheBoredTeam/homebrew-boring-notch"
 tap "upsun/tap"
 brew "tree"
@@ -107,10 +105,18 @@ brew "yarn"
 brew "yq"
 brew "zsh-autosuggestions"
 brew "zsh-fast-syntax-highlighting"
-brew "openai/tools/tart"
+brew "openai/tools/tart", trusted: true
+brew "felixkratz/formulae/borders", trusted: true
+brew "hashicorp/tap/terraform", trusted: true
+brew "humanitec/tap/cli", trusted: true
+brew "kcl-lang/tap/kcl", trusted: true
+brew "kcl-lang/tap/kcl-lsp", trusted: true
+brew "score-spec/tap/score-compose", trusted: true
+brew "score-spec/tap/score-k8s", trusted: true
+brew "upsun/tap/upsun-cli", trusted: true
 cask "1password"
 cask "1password-cli"
-cask "nikitabobko/tap/aerospace"
+cask "nikitabobko/tap/aerospace", trusted: true
 cask "appcleaner"
 cask "arq"
 cask "bartender"
@@ -130,7 +136,7 @@ cask "gpg-suite"
 cask "istat-menus"
 cask "itermbrowserplugin"
 cask "kindle"
-cask "kubara-io/tap/kubara"
+cask "kubara-io/tap/kubara", trusted: true
 cask "languagetool-desktop"
 cask "little-snitch"
 cask "logitech-options"
