@@ -35,7 +35,7 @@ Existing files in `$HOME` that home-manager would replace are renamed to `*.befo
 ## Day to day
 
 ```sh
-sudo darwin-rebuild switch --flake ~/dotfiles#mbp   # apply changes
+sudo /run/current-system/sw/bin/darwin-rebuild switch --flake ~/dotfiles#mbp  # apply changes (sudo PATH lacks darwin-rebuild)
 nix flake update                                    # update nixpkgs, modules and skills
 brew bundle dump --file=~/dotfiles/Brewfile --force # after installing apps by hand
 ```
