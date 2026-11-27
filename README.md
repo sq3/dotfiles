@@ -42,5 +42,16 @@ brew bundle dump --file=~/dotfiles/Brewfile --force # after installing apps by h
 
 Secrets come from 1Password (`op`) at runtime.
 
+## Checks
+
+[pre-commit](https://pre-commit.com) hooks are installed by `home.nix` on every switch (config in `.pre-commit-config.yaml`):
+
+| Hook | When | What |
+| --- | --- | --- |
+| gitleaks | commit and push | Scans for secrets; the repo is public |
+| nix build | push, if `*.nix` or `flake.lock` changed | Builds `darwinConfigurations.mbp.system` without activating it, so a broken config never reaches `main` |
+
+Build it by hand: `darwin-rebuild build --flake ~/dotfiles#mbp`. A passing build does not mean the config activates cleanly; run the switch for that.
+
 ## Screenshot
 ![screenshot](Screenshot.png)
