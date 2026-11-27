@@ -20,3 +20,11 @@ repos:
         pass_filenames: false
         always_run: true
         stages: [pre-push]
+      # Builds the full system closure without activating it; mostly cache hits
+      - id: nix-build
+        name: nix build darwinConfigurations.mbp
+        entry: nix build --no-link .#darwinConfigurations.mbp.system
+        language: system
+        pass_filenames: false
+        files: (\.nix|flake\.lock)$
+        stages: [pre-commit]
