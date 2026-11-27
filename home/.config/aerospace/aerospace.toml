@@ -25,16 +25,17 @@ automatically-unhide-macos-hidden-apps = true
 on-focus-changed = ['exec-and-forget ~/.config/aerospace/scripts/pull-floating.sh']
 
 # Workspaces always exist and are pinned to monitors (first match wins, rest are fallbacks)
+# Office (LG + laptop): 1-7 on LG, 8-9 on laptop. Home: 3-7 on monitor 2
 persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 [workspace-to-monitor-force-assignment]
 1 = ['1', 'main']
 2 = ['1', 'main']
-3 = ['2', 'main']
-4 = ['2', 'main']
-5 = ['2', 'main']
-6 = ['2', 'main']
-7 = ['2', 'main']
+3 = ['LG HDR 4K', '2', 'main']
+4 = ['LG HDR 4K', '2', 'main']
+5 = ['LG HDR 4K', '2', 'main']
+6 = ['LG HDR 4K', '2', 'main']
+7 = ['LG HDR 4K', '2', 'main']
 8 = ['built-in', 'main']
 9 = ['built-in', 'main']
 
