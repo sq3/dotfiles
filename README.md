@@ -40,7 +40,7 @@ nix flake update                                    # update nixpkgs, modules an
 brew bundle dump --file=~/dotfiles/Brewfile --force # after installing apps by hand
 ```
 
-Secrets are never committed; they come from 1Password (`op`) at runtime.
+Secrets come from 1Password (`op`) at runtime.
 
 ## Screenshot
 ![screenshot](Screenshot.png)
